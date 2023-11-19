@@ -106,22 +106,41 @@ procedimento listar
 
 var
 
-   i: inteiro
+   i,cont,contador: inteiro
 
 inicio
 
-   escreval ("Os filmes disponíveis são: ")
    para i de 1 ate 10 passo 1 faca
-      se (cadastro.status[i]="Disponível") entao
-         escreval ("Nome: ",cadastro.nome[i]," / ", "Ano do filme: ",cadastro.ano[i])
-      fimse
+     se (cadastro.status[i]="Disponível") entao
+        cont<-cont+1
+     fimse
    fimpara
-   escreval("Os filmes locados são: ")
-      para i de 1 ate 10 passo 1 faca
-      se (cadastro.status[i]="Locado") entao
-         escreval ("Nome: ",cadastro.nome[i]," / ", "Ano do filme: ",cadastro.ano[i])
-      fimse
-      fimpara
+   se(cont>0)entao
+     escreval ("Os filmes disponíveis são: ")
+     para i de 1 ate 10 passo 1 faca
+        se (cadastro.status[i]="Disponível") entao
+           escreval ("Nome: ",cadastro.nome[i]," / ", "Ano do filme: ",cadastro.ano[i])
+        fimse
+     fimpara
+   senao
+     escreval("Nenhum filme disponível")
+   fimse
+   para i de 1 ate 10 passo 1 faca
+       se (cadastro.status[i]="Locado") entao
+            contador<-contador+1
+       fimse
+   fimpara
+   se(contador>0)entao
+     escreval("Os filmes locados são: ")
+        para i de 1 ate 10 passo 1 faca
+          se (cadastro.status[i]="Locado") entao
+            escreval ("Nome: ",cadastro.nome[i]," / ", "Ano do filme: ",cadastro.ano[i])
+          fimse
+        fimpara
+   senao
+     escreval("Não existem filmes locados")
+   fimse
+
 fimprocedimento
 
 // FILMES LOCADOS
@@ -129,16 +148,25 @@ fimprocedimento
 procedimento listarLocados
 
 var
-i: inteiro
+i,cont: inteiro
 
 inicio
-      escreval ("Esses são os filmes locados: ")
-      para i de 1 ate 10 passo 1 faca
-      se (cadastro.status[i]="Locado")entao
-      escreval (cadastro.nome[i])
-      fimse
-      fimpara
 
+    para i de 1 ate 10 passo 1 faca
+       se (cadastro.status[i]="Locado") entao
+            cont<-cont+1
+       fimse
+    fimpara
+      se (cont>0) entao
+         escreval ("Esses são os filmes locados: ")
+         para i de 1 ate 10 passo 1 faca
+            se (cadastro.status[i]="Locado")entao
+               escreval (cadastro.nome[i])
+            fimse
+         fimpara
+      senao
+          escreval("Não existem filmes locados")
+      fimse
 fimprocedimento
 
 
