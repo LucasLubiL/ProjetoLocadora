@@ -61,7 +61,6 @@ Inicio
 
       caso 1
          cadastrar
-
       caso 2
          listar
       caso 3
@@ -94,6 +93,10 @@ inicio
       leia (cadastro.nome[contadorFilmes])
       escreval ("Digite o ano do filme: ")
       leia (cadastro.ano[contadorFilmes])
+      enquanto (cadastro.ano[contadorFilmes]=0)faca
+         escreval("Ano inválido, digite um ano válido: ")
+         leia (cadastro.ano[contadorFilmes])
+      fimenquanto
       cadastro.status[contadorFilmes] <- "Disponível"
    senao
       escreval("Número máximo de cadastros atingido.")
@@ -157,16 +160,16 @@ inicio
             cont<-cont+1
        fimse
     fimpara
-      se (cont>0) entao
-         escreval ("Esses são os filmes locados: ")
-         para i de 1 ate 10 passo 1 faca
-            se (cadastro.status[i]="Locado")entao
+    se (cont>0) entao
+       escreval ("Esses são os filmes locados: ")
+       para i de 1 ate 10 passo 1 faca
+          se (cadastro.status[i]="Locado")entao
                escreval (cadastro.nome[i])
-            fimse
-         fimpara
-      senao
-          escreval("Não existem filmes locados")
-      fimse
+          fimse
+       fimpara
+    senao
+       escreval("Não existem filmes locados")
+    fimse
 fimprocedimento
 
 
@@ -177,36 +180,117 @@ procedimento alugar
 
 var
 
-i,opc: inteiro
+i,opc,cont: inteiro
 
 inicio
 
-      escreval("Escolha o filme que você deseja alugar: ")
       para i de 1 ate 10 passo 1 faca
-      se (cadastro.status[i]="Disponível") então
-      escreval (i," para alugar ",cadastro.nome[i])
-      fimse
+        se(cadastro.status[i]="Disponível")entao
+          cont<-cont+1
+        fimse
       fimpara
-      leia (opc)
-      enquanto (opc<1) ou (opc>10) ou (cadastro.status[opc]<>"Disponível") faca
+      se(cont>0)entao
+         escreval("Escolha o filme que você deseja alugar: ")
+         para i de 1 ate 10 passo 1 faca
+           se (cadastro.status[i]="Disponível") então
+             escreval (i," para alugar ",cadastro.nome[i])
+           fimse
+         fimpara
+         leia (opc)
+         enquanto (opc<1) ou (opc>10) faca
             limpatela
             escreval("Escolha uma opção válida")
             escreval
             escreval("Escolha o filme que você deseja alugar: ")
-            escreval("Digite -1 caso não tenha filmes disponíveis")
             para i de 1 ate 10 passo 1 faca
                se (cadastro.status[i]="Disponível") então
                   escreval (i," para alugar ",cadastro.nome[i])
                fimse
             fimpara
             leia (opc)
-            se (opc=-1) entao
-               menuPrincipal
+            
+         fimenquanto
+         se (cadastro.status[opc]="Disponível") entao
+           cadastro.status[opc] <- "Locado"
+           escreval ("Você acaba de alugar: ",cadastro.nome[opc])
+           cadastro.vezesLocado[opc] <- cadastro.vezesLocado[opc]+1
+         senão
+           escreval("O filme ja foi alugado ou ainda não foi registrado")
+         fimse
+      senao
+         escreval("Não existem filmes disponíveis para locação")
+      fimse
+fimprocedimento
+
+procedimento devolver
+
+var
+   i,cont,opc:inteiro
+
+inicio
+
+   para i de 1 ate 10 passo 1 faca
+      se (cadastro.status[i]="Locado") entao
+         cont<-cont+1
+      fimse
+   fimpara
+   se (cont>0) entao
+      escreval ("Escolha o filme que quer devolver: ")
+      para i de 1 ate 10 passo 1 faca
+         se (cadastro.status[i]="Locado")entao
+            escreval (i," para devolver o filme ", cadastro.nome[i])
+         fimse
+      fimpara
+      leia (opc)
+      enquanto (opc <1) ou (opc>10) faca
+         escreval ("Escolha uma opção válida.")
+         escreval ("Escolha o filme que quer devolver: ")
+         para i de 1 ate 10 passo 1 faca
+            se (cadastro.status[i]="Locado")entao
+               escreval (i," para devolver o filme ", cadastro.nome[i])
             fimse
+         fimpara
+         leia (opc)
       fimenquanto
-      cadastro.status[opc] <- "Locado"
-      escreval ("Você acaba de alugar: ",cadastro.nome[opc])
-      cadastro.vezesLocado[opc] <- cadastro.vezesLocado[opc]+1
+      se (cadastro.status[opc]="Locado") entao
+         cadastro.status[opc]<- "Disponível"
+         escreval ("O filme ",cadastro.nome[opc], " foi devolvido com sucesso.")
+      senao
+         escreval ("O filme não está alugado ou não foi registrado.")
+      fimse
+   senao
+      escreval("Não existem filmes locados para serem devolvidos")
+   fimse
+fimprocedimento
+
+procedimento FilmeMaislocado
+
+Var
+i,maior,cont:inteiro
+Inicio
+
+    para i de 1 ate 10 passo 1 faca
+      se (cadastro.status[i]="Locado") entao
+         cont<-cont+1
+      fimse
+   fimpara
+   se(cont>0)entao
+      escreval (" O(s) filme(s) mais locado(s): ")
+
+      para i de 1 ate 10 passo 1 faca
+         se (maior <cadastro.vezesLocado[i])entao
+            maior <- cadastro.vezesLocado[i]
+         fimse
+      fimpara
+      para i de 1 ate 10 passo 1 faca
+         se (cadastro.vezesLocado[i] = maior) entao
+            escreval (" Nome do filme: ",cadastro.nome[i]," / Ano do filme: ",cadastro.ano[i],"/ Vezes locado: ",cadastro.vezesLocado[i])
+         fimse
+      fimpara
+   senao
+      escreval("Nenhum filme foi alugado, logo não temos o ranking atualizado.")
+   fimse
+
 fimprocedimento
 
 
