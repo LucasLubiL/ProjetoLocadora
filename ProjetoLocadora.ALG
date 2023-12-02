@@ -3,7 +3,7 @@ Algoritmo "LOCADORA-ADS"
 // Professor   : Gilberto
 // Nome Equipe : Launch
 // Integrantes : Alex Nunes Silva
-//               Alexssander JosÈ de Oliveira de Castro
+//               Alexssander Jos√© de Oliveira de Castro
 //               Cristiano Rodrigues
 //               Lucas Amaral Luciano
 //               Pablo Vinicius Lima Souza
@@ -69,10 +69,10 @@ Inicio
 
 
    enquanto (opcao>0)e(opcao<8) faca
-      escreval("Escolha uma das opÁıes: ")
+      escreval("Escolha uma das op√ß√µes: ")
       escreval
       escreval("1. Cadastrar um filme")
-      escreval("2. Listar Filmes locados e disponÌveis")
+      escreval("2. Listar Filmes locados e dispon√≠veis")
       escreval("3. Filmes locados")
       escreval("4. Alugar um filme")
       escreval("5. Devolver um filme")
@@ -83,10 +83,10 @@ Inicio
 
       enquanto (opcao<1)ou(opcao>7) faca
          limpatela
-         escreval("Escolha uma opÁ„o v·lida")
+         escreval("Escolha uma op√ß√£o v√°lida")
          escreval
          escreval("1. Cadastrar um filme")
-         escreval("2. Listar Filmes locados e disponÌveis")
+         escreval("2. Listar Filmes locados e dispon√≠veis")
          escreval("3. Filmes locados")
          escreval("4. Alugar um filme")
          escreval("5. Devolver um filme")
@@ -143,7 +143,7 @@ Inicio
          escreval ("                                                                                  Equipe Launch              ")
          escreval
          escreval ("                                                                                 Alex Nunes Silva            ")
-         escreval ("                                                                       Alexssander JosÈ de Oliveira de Castro")
+         escreval ("                                                                       Alexssander Jos√© de Oliveira de Castro")
          escreval ("                                                                               Cristiano Rodrigues          ")
          escreval ("                                                                               Lucas Amaral Luciano          ")
          escreval ("                                                                             Pablo Vinicius Lima Souza       ")
@@ -176,14 +176,14 @@ inicio
       leia (cadastro.ano[contadorFilmes])
       escreval
       enquanto (cadastro.ano[contadorFilmes]=0)faca
-         escreval("Ano inv·lido digite um ano v·lido: ")
+         escreval("Ano inv√°lido digite um ano v√°lido: ")
          leia (cadastro.ano[contadorFilmes])
          escreval
       fimenquanto
-      cadastro.status[contadorFilmes] <- "DisponÌvel"
+      cadastro.status[contadorFilmes] <- "Dispon√≠vel"
    senao
       contadorFilmes<-10
-      escreval("N˙mero m·ximo de cadastros atingido.")
+      escreval("N√∫mero m√°ximo de cadastros atingido.")
    fimse
    escreval
    escreval("Enter Para voltar ao MENU:")
@@ -203,20 +203,20 @@ var
 inicio
 
    para i de 1 ate 10 passo 1 faca
-      se (cadastro.status[i]="DisponÌvel") entao
+      se (cadastro.status[i]="Dispon√≠vel") entao
          cont<-cont+1
       fimse
    fimpara
    se(cont>0)entao
-      escreval ("Os filmes disponÌveis s„o: ")
+      escreval ("Os filmes dispon√≠veis s√£o: ")
       para i de 1 ate 10 passo 1 faca
-         se (cadastro.status[i]="DisponÌvel") entao
+         se (cadastro.status[i]="Dispon√≠vel") entao
             escreval ("Nome: ",cadastro.nome[i]," / ", "Ano do filme: ",cadastro.ano[i])
          fimse
       fimpara
       escreval
    senao
-      escreval("Nenhum filme disponÌvel")
+      escreval("Nenhum filme dispon√≠vel")
       escreval
    fimse
    para i de 1 ate 10 passo 1 faca
@@ -225,14 +225,14 @@ inicio
       fimse
    fimpara
    se(contador>0)entao
-      escreval("Os filmes locados s„o: ")
+      escreval("Os filmes locados s√£o: ")
       para i de 1 ate 10 passo 1 faca
          se (cadastro.status[i]="Locado") entao
             escreval ("Nome: ",cadastro.nome[i]," / ", "Ano do filme: ",cadastro.ano[i])
          fimse
       fimpara
    senao
-      escreval("N„o existem filmes locados")
+      escreval("N√£o existem filmes locados")
       escreval
    fimse
    escreval
@@ -259,14 +259,14 @@ inicio
       fimse
    fimpara
    se (cont>0) entao
-      escreval ("Esses s„o os filmes locados: ")
+      escreval ("Esses s√£o os filmes locados: ")
       para i de 1 ate 10 passo 1 faca
          se (cadastro.status[i]="Locado")entao
             escreval (cadastro.nome[i])
          fimse
       fimpara
    senao
-      escreval("N„o existem filmes locados")
+      escreval("N√£o existem filmes locados")
    fimse
    escreval
    escreval("Enter Para voltar ao MENU:")
@@ -288,41 +288,41 @@ var
 inicio
 
    para i de 1 ate contadorFilmes passo 1 faca
-      se (cadastro.status[i]="DisponÌvel") entao
+      se (cadastro.status[i]="Dispon√≠vel") entao
          cont<-cont+1
       fimse
    fimpara
    se (cont>0) entao
-      escreval("Escolha o filme que vocÍ deseja alugar: ")
+      escreval("Escolha o filme que voc√™ deseja alugar: ")
       para i de 1 ate contadorFilmes passo 1 faca
-         se (cadastro.status[i]="DisponÌvel") ent„o
+         se (cadastro.status[i]="Dispon√≠vel") ent√£o
             escreval (i," para alugar ",cadastro.nome[i])
          fimse
       fimpara
       leia (opc)
       enquanto (opc<1) ou (opc>contadorFilmes)  faca
          limpatela
-         escreval("Escolha uma opÁ„o v·lida.")
+         escreval("Escolha uma op√ß√£o v√°lida.")
          escreval
-         escreval("Escolha o filme que vocÍ deseja alugar: ")
+         escreval("Escolha o filme que voc√™ deseja alugar: ")
 
          para i de 1 ate contadorFilmes passo 1 faca
-            se (cadastro.status[i]="DisponÌvel") ent„o
+            se (cadastro.status[i]="Dispon√≠vel") ent√£o
                escreval (i," para alugar ",cadastro.nome[i])
             fimse
          fimpara
          leia (opc)
 
       fimenquanto
-      se (cadastro.status[opc]="DisponÌvel") entao
+      se (cadastro.status[opc]="Dispon√≠vel") entao
          cadastro.status[opc] <- "Locado"
-         escreval ("VocÍ acaba de alugar: ",cadastro.nome[opc])
+         escreval ("Voc√™ acaba de alugar: ",cadastro.nome[opc])
          cadastro.vezesLocado[opc] <- cadastro.vezesLocado[opc]+1
-      sen„o
+      sen√£o
          escreval("O filme ja foi alugado.")
       fimse
    senao
-      escreval("N„o existem filmes disponÌveis para locaÁ„o.")
+      escreval("N√£o existem filmes dispon√≠veis para loca√ß√£o.")
    fimse
    escreval
    escreval("Enter Para voltar ao MENU:")
@@ -356,7 +356,9 @@ inicio
       fimpara
       leia (opc)
       enquanto (opc <1) ou (opc>contadorFilmes) faca
-         escreval ("Escolha uma opÁ„o v·lida.")
+         limpatela
+         escreval ("Escolha uma op√ß√£o v√°lida.")
+         escreval
          escreval ("Escolha o filme que quer devolver: ")
          para i de 1 ate contadorFilmes passo 1 faca
             se (cadastro.status[i]="Locado")entao
@@ -366,13 +368,13 @@ inicio
          leia (opc)
       fimenquanto
       se (cadastro.status[opc]="Locado") entao
-         cadastro.status[opc]<- "DisponÌvel"
+         cadastro.status[opc]<- "Dispon√≠vel"
          escreval ("O filme ",cadastro.nome[opc], " foi devolvido com sucesso.")
       senao
-         escreval ("O filme n„o est· alugado.")
+         escreval ("O filme n√£o est√° alugado.")
       fimse
    senao
-      escreval("N„o existem filmes locados para serem devolvidos")
+      escreval("N√£o existem filmes locados para serem devolvidos")
    fimse
    escreval
    escreval("Enter Para voltar ao MENU:")
@@ -411,7 +413,7 @@ inicio
          fimse
       fimpara
    senao
-      escreval("Nenhum filme foi alugado, logo n„o temos o ranking atualizado.")
+      escreval("Nenhum filme foi alugado, logo n√£o temos o ranking atualizado.")
    fimse
    escreval
    escreval("Enter Para voltar ao MENU:")
@@ -420,7 +422,7 @@ inicio
 fimprocedimento
 
 
-// FUN«√O PRINCIPAL
+// FUN√á√ÉO PRINCIPAL
 
 tipo
 
